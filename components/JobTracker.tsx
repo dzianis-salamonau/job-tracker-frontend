@@ -7,6 +7,8 @@ import { Job } from './types';
 import JobForm from './JobForm';
 import JobList from './JobList';
 
+const BACKEND_API_URL = process.env.BACKEND_API_URL;
+
 const FORM_FIELDS = [
   {
     name: 'company',
@@ -60,7 +62,7 @@ const JobTracker: React.FC = () => {
 
   const fetchJobs = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jobs`);
+      const response = await fetch(`${BACKEND_API_URL}/jobs`);
       const data = await response.json();
       setJobs(data);
     } catch (error) {
@@ -78,8 +80,8 @@ const JobTracker: React.FC = () => {
 
     try {
       const url = isEditing
-        ? `${process.env.NEXT_PUBLIC_API_URL}/jobs/${currentJob._id}`
-        : `${process.env.NEXT_PUBLIC_API_URL}/jobs`;
+        ? `${BACKEND_API_URL}/jobs/${currentJob._id}`
+        : `${BACKEND_API_URL}/jobs`;
       const method = isEditing ? 'PUT' : 'POST';
 
       const response = await fetch(url, {
@@ -109,7 +111,7 @@ const JobTracker: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jobs/${id}`, {
+      const response = await fetch(`${BACKEND_API_URL}/jobs/${id}`, {
         method: 'DELETE',
       });
 
