@@ -1,13 +1,11 @@
 "use client";
 
-require('dotenv').config(); 
-
 import React, { useState, useEffect } from 'react';
 import { Job } from './types';
 import JobForm from './JobForm';
 import JobList from './JobList';
 
-const BACKEND_API_URL = process.env.BACKEND_API_URL;
+const BACKEND_API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL;
 
 const FORM_FIELDS = [
   {
